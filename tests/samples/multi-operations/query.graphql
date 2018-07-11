@@ -1,0 +1,13 @@
+query GetHero {
+  hero {
+    id
+    name
+  }
+}
+
+query GetAllHeros {
+  heros {
+    id
+    name
+  }
+}

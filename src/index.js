@@ -1,8 +1,5 @@
-import {
-  createFilter
-} from 'rollup-pluginutils';
+import {createFilter} from 'rollup-pluginutils';
 import loader from 'graphql-tag/loader';
-
 import toESModules from './toESModules';
 
 export default function graphql(options = {}) {
@@ -18,9 +15,14 @@ export default function graphql(options = {}) {
       if (!filterExt.test(id)) return null;
 
       // XXX: this.cachable() in graphql-tag/loader
-      const code = toESModules(loader.call({
-        cacheable() {}
-      }, source));
+      const code = toESModules(
+        loader.call(
+          {
+            cacheable() {}
+          },
+          source
+        )
+      );
 
       return {
         code

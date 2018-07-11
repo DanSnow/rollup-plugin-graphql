@@ -1,9 +1,7 @@
-import {
-  EOL
-} from 'os';
+import {EOL} from 'os';
 
 export default function(source) {
-  if (typeof source !== "string") {
+  if (typeof source !== 'string') {
     return source;
   }
 
@@ -11,7 +9,12 @@ export default function(source) {
 }
 
 function replaceModuleExports(source) {
-  return source.replace('module.exports = doc', 'export default doc');
+  return source
+    .replace('module.exports = doc', 'export default doc')
+    .replace(
+      /^\s+module.exports\["(\w+)"\] = (.*)$/gm,
+      (_, name, query) => `export const ${name} = ${query}`
+    );
 }
 
 function replaceRequires(source) {
@@ -19,8 +22,8 @@ function replaceRequires(source) {
   let index = 0;
 
   // replace a require statement with a variable
-  source = source.replace(/require\(([^)]+)\)/ig, (match, path) => {
-    path = path.replace(/[\"\']+/g, '');
+  source = source.replace(/require\(([^)]+)\)/gi, (match, path) => {
+    path = path.replace(/["']+/g, '');
 
     if (!imports[path]) {
       imports[path] = `frgmt${++index}`;
@@ -31,7 +34,7 @@ function replaceRequires(source) {
 
   // prepare import statements
   const importsOutput = Object.keys(imports)
-    .map((path) => `import ${imports[path]} from "${path}";`)
+    .map(path => `import ${imports[path]} from "${path}";`)
     .join(EOL);
 
   return importsOutput + EOL + source;

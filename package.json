@@ -39,17 +39,17 @@
     "rollup-pluginutils": "^2.0.1"
   },
   "peerDependencies": {
-    "graphql": "^0.9.0 || ^0.10.0"
+    "graphql": "^0.13.0"
   },
   "devDependencies": {
-    "babel-jest": "^20.0.3",
-    "eslint": "^3.19.0",
+    "babel-jest": "^23.4.0",
+    "eslint": "^5.1.0",
     "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-jest": "^20.0.3",
-    "graphql": "^0.10.1",
-    "jest": "^20.0.4",
-    "rollup": "^0.43.0",
-    "rollup-plugin-buble": "^0.15.0",
+    "eslint-plugin-jest": "^21.17.0",
+    "graphql": "^0.13.2",
+    "jest": "^23.4.0",
+    "rollup": "^0.62.0",
+    "rollup-plugin-buble": "^0.19.2",
     "rollup-plugin-node-resolve": "^3.0.0"
   },
   "jest": {
